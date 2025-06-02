@@ -11,7 +11,6 @@ export interface User {
   updated_at: Date;
 }
 
-// User without sensitive data (for responses)
 export interface UserResponse {
   id: number;
   email: string;
@@ -20,7 +19,6 @@ export interface UserResponse {
   created_at: Date;
 }
 
-// Registration request body
 export interface RegisterRequest {
   email: string;
   password: string;
@@ -28,19 +26,16 @@ export interface RegisterRequest {
   last_name: string;
 }
 
-// Login request body
 export interface LoginRequest {
   email: string;
   password: string;
 }
 
-// JWT payload
 export interface JwtPayload {
   userId: number;
   email: string;
 }
 
-// Extended Request interface for authenticated routes
 export interface AuthenticatedRequest extends Request {
   user?: JwtPayload;
 }
