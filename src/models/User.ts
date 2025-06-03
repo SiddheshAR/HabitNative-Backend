@@ -39,7 +39,7 @@ export class UserModel {
 
     static async findEmailExist(email:string):Promise<boolean>{
 
-        const query = `SELECt * FROM users WHERE email `
+        const query = `SELECt id FROM users WHERE email `
         const values = [email]
         try{
             const response = await pool.query(query,values);
