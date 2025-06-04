@@ -4,7 +4,7 @@ import { Request,Response,NextFunction } from "express";
 import { AuthenticatedRequest,ApiResponse } from "../types";
 import { verifyToken } from "../utils/jwt";
 
-export const authenticatedToken = (req:Request,res:Response,next:NextFunction)=>{
+export const authenticatedToken = (req:any,res:Response,next:NextFunction)=>{
 
     const authHeader = req.headers['authorization'];
     const getToken=authHeader && authHeader?.split(' ')[1];

@@ -3,8 +3,6 @@ import { LoginRequest, RegisterRequest, UserResponse } from "../types";
 import { comparePassword, hashPassword } from "../utils/hashPassword";
 import { generateToken } from "../utils/jwt";
 
-
-
 export class AuthService{
 
     static async register(userData:RegisterRequest):Promise<{
