@@ -20,3 +20,4 @@ CREATE TRIGGER update_habits_updated_at
     BEFORE UPDATE ON habits 
     FOR EACH ROW 
     EXECUTE FUNCTION update_updated_at_column();
+

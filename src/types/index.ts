@@ -73,3 +73,20 @@ export interface HabitResponse {
   updated_at: string;
 }
 
+export interface HabitCreatePayload {
+  title:string,
+  description?:string,
+  frequency:string,
+}
+export interface HabitCreateResponse {
+  id:number,
+  title:string,
+  description?:string,
+  frequency:string,
+}
+export interface UpdateHabitPayload{
+  title?:string,
+  description?:string,
+  frequency?:string
+  is_active?:boolean
+}
