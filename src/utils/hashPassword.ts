@@ -6,7 +6,8 @@ const SALT_ROUNDS = process.env.SALT_ROUNDS || 12;
 
 export const hashPassword = async(password:string):Promise<string>=>{
     try{
-        return await bcrypt.hash(password,SALT_ROUNDS)
+        console.log(password)
+        return await bcrypt.hash(password,Number(SALT_ROUNDS))
     }catch(error){
         throw new Error("Failed while Hashing.")
     }

@@ -47,3 +47,29 @@ export interface ApiResponse<T = any> {
   data?: T;
   error?: string;
 }
+
+export interface Habit {
+  id:number,
+  user_id:number,
+  title:string,
+  description?:string,
+  streak_count:number,
+  last_completed_date:string,
+  frequency:'daily' | 'monthly' | 'weekly',
+  is_active:boolean,
+  created_at:string,
+  updated_at:string
+}
+
+export interface HabitResponse {
+  id: number;
+  title: string;
+  description?: string;
+  streak_count: number;
+  last_completed_date?: string;
+  frequency: 'daily' | 'weekly' | 'monthly';
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+

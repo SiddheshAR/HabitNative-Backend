@@ -4,7 +4,7 @@ import { User, UserResponse, RegisterRequest } from '../types';
 
 export class UserModel {
     static async create(userData:RegisterRequest):Promise<UserResponse>{
-        const query = `INSERT INTO users (email,password,first_name,last_name) VALUES ($1 , $2,$3,$4)
+        const query = `INSERT INTO users (email,password,first_name,last_name) VALUES ($1,$2,$3,$4)
         RETURNING id,email,password,first_name,last_name,created_at
         `
         const values = [userData.email,userData.password,userData.first_name,userData.last_name]
@@ -39,7 +39,7 @@ export class UserModel {
 
     static async findEmailExist(email:string):Promise<boolean>{
 
-        const query = `SELECt id FROM users WHERE email `
+        const query = `SELECt id FROM users WHERE email = $1 `
         const values = [email]
         try{
             const response = await pool.query(query,values);
