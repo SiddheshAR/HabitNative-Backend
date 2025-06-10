@@ -90,3 +90,8 @@ export interface UpdateHabitPayload{
   frequency?:string
   is_active?:boolean
 }
+
+export type softDeleteResp={
+  id:string,
+  title:string
+}
