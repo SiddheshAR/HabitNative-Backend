@@ -15,11 +15,11 @@ export class HabitModel {
      }
     }
 
-    static async findByUserId(habitId:number,userId:number):Promise<HabitResponse[] | null>{
-        const query = `SELECT id,title,description,streak_count,last_completed_date,frequency,is_active,created_at,updated_at FROM habits WHERE id = $1 AND user_id = $2`;
-        const VALUES = [habitId,userId]
+    static async findByUserId(userId:number,isActive:boolean):Promise<HabitResponse[] | null>{
+        const query = `SELECT id,title,description,streak_count,last_completed_date,frequency,is_active,created_at,updated_at FROM habits WHERE id = $1 AND is_active = $2`;
+        const VALUES = [userId,isActive]
         try{
-        const queryResp = await pool.query(query,VALUES)
+        const queryResp = await pool.query(query,VALUES); 
         return queryResp.rows[0] || null;
         }catch(error){
             throw error
@@ -82,7 +82,7 @@ export class HabitModel {
         }
     }
 
-    static async markCompleted(habitId:string,userId:string):Promise<HabitResponse | null>{
+    static async markCompleted(habitId:number,userId:number):Promise<HabitResponse | null>{
     const today = new Date().toISOString().split('T')[0];
     const VALUES=[today,habitId,userId]
         const query = `UPDATE habits
@@ -102,7 +102,7 @@ export class HabitModel {
             throw error
         }
     }
-    static async softDelete(habitId:string,userId:string):Promise<softDeleteResp | null>{
+    static async softDelete(habitId:number,userId:number):Promise<softDeleteResp | null>{
         
         const query = `UPDATE habits
             SET is_active = false
