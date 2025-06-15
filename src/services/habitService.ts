@@ -50,6 +50,13 @@ export class HabitService {
       throw new Error('Habit not found or access denied');
     }
   }
+    static async completeHabit(habitId: number, userId: number): Promise<HabitResponse> {
+    const completedHabit = await HabitModel.markCompleted(habitId, userId);
+    if (!completedHabit) {
+      throw new Error('Habit not found, inactive, or access denied');
+    }
+    return completedHabit;
+  }
 
   // Permanently delete habit
   static async deleteHabit(habitId: number, userId: number): Promise<void> {
@@ -78,5 +85,3 @@ const totalHabitCount = totalHabitsResp.reduce((acc, curr) => {
     }
   } 
 }
-
-
